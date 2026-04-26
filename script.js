@@ -1,6 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const loader = document.getElementById("file-loader");
 
-    // তোমার পুরো existing script.js code এখানে
+    function showLoader() {
+        loader.style.display = "flex";
+    }
+
+    function hideLoader() {
+        loader.style.display = "none";
+    }
 
 
 

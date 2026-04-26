@@ -9,6 +9,48 @@
 </head>
 
 <body>
+    <div id="file-loader" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.75);
+z-index:9999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:#fff;
+font-family:Arial;
+">
+
+        <div style="
+width:55px;
+height:55px;
+border:5px solid #444;
+border-top:5px solid #00ff99;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:15px;
+"></div>
+
+        <h2 style="margin:0;">Loading...</h2>
+        <p style="margin-top:8px;color:#ccc;">Please wait while files are being selected</p>
+
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
     <!-- <script src="script.js"></script> -->
     <script>
         (async function () {
