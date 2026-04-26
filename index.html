@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>DISCOUNT CONSUMTION-PDF | Professional PDF Splitter</title>
+    <title>D-C-PDF | Professional PDF Splitter</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -46,24 +46,12 @@
                 box-shadow: 0 0 12px rgba(255, 0, 0, .35);
             }
         }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- FILE SELECT LOADER -->
+    <!-- File Loader -->
     <div id="file-loader" style="
 display:none;
 position:fixed;
@@ -91,13 +79,10 @@ margin-bottom:15px;
 "></div>
 
         <h2 style="margin:0;">Loading...</h2>
-        <p style="margin-top:8px;color:#ccc;">
-            Please wait while opening files
-        </p>
-
+        <p style="margin-top:8px;color:#ccc;">Please wait while opening files</p>
     </div>
 
-    <!-- SECURITY -->
+    <!-- Security -->
     <script>
         (async function () {
 
@@ -225,12 +210,12 @@ Protected by D-C-PDF Security Layer
         })();
     </script>
 
-    <!-- MAIN APP -->
+    <!-- App -->
     <div class="app-container">
 
         <header>
             <div class="logo">📄</div>
-            <h3>DISCOUNT CONSUMTION - SHYAM STEEL</h3>
+            <h1>D-C-PDF</h1>
             <p>Fast, Offline & Secure Processing</p>
         </header>
 
@@ -247,9 +232,7 @@ Protected by D-C-PDF Security Layer
                     </svg>
                 </div>
 
-                <p id="drop-text">
-                    Drag & Drop PDF files or folders
-                </p>
+                <p id="drop-text">Drag & Drop PDF files or folders</p>
 
                 <div class="upload-buttons">
 
@@ -270,7 +253,6 @@ document.getElementById('folder-input').click();
                 </div>
 
                 <input type="file" id="file-input" accept="application/pdf" multiple hidden>
-
                 <input type="file" id="folder-input" webkitdirectory hidden>
 
             </div>
@@ -322,6 +304,45 @@ document.getElementById('folder-input').click();
 
             </div>
 
+            <footer style="
+margin-top:30px;
+padding:18px 15px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+font-family:Arial,sans-serif;
+">
+
+                <p style="
+margin:0;
+font-size:14px;
+color:#888;
+line-height:1.8;
+">
+                    Developed by
+                    <span style="color:#ff4d4d;font-weight:bold;">
+                        Abhijit Das
+                    </span>
+                </p>
+
+                <p style="
+margin:4px 0 0;
+font-size:13px;
+color:#777;
+">
+                    📧 One94community@gmail.com |
+                    📞 +91 - 9476378707
+                </p>
+
+                <p style="
+margin:6px 0 0;
+font-size:12px;
+color:#555;
+">
+                    © 2026 D-C-PDF | All Rights Reserved
+                </p>
+
+            </footer>
+
         </main>
     </div>
 
@@ -340,42 +361,6 @@ document.getElementById('folder-input').click();
             document.getElementById("file-loader").style.display = "none";
         });
     </script>
-    <!-- stats-grid এর নিচে, </main> এর আগে এটা বসাও -->
-
-<footer style="
-margin-top:30px;
-padding:18px 15px;
-text-align:center;
-border-top:1px solid rgba(255,255,255,.08);
-font-family:Arial,sans-serif;
-">
-
-<p style="
-margin:0;
-font-size:14px;
-color:#888;
-line-height:1.8;
-">
-Developed by <span style="color:#ff4d4d;font-weight:bold;">Abhijit Das</span>
-</p>
-
-<p style="
-margin:4px 0 0;
-font-size:13px;
-color:#777;
-">
-📧 One94community@gmail.com | 📞 +91 - 9476378707
-</p>
-
-<p style="
-margin:6px 0 0;
-font-size:12px;
-color:#555;
-">
-© 2026 D-C-PDF | All Rights Reserved
-</p>
-
-</footer>
 
 </body>
 
