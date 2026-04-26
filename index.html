@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Splitter Pro | Minimal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">📄</div>
+            <h1>PDF Splitter Pro</h1>
+            <p>Fast, Offline & Secure Processing</p>
+        </header>
+
+        <main>
+            <div class="upload-area" id="drop-zone">
+                <div class="upload-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                </div>
+                <p id="drop-text">Drag & drop PDF files or folders</p>
+
+                <div class="upload-buttons">
+                    <button class="btn-secondary" onclick="document.getElementById('file-input').click()">Select
+                        Files</button>
+                    <button class="btn-secondary" onclick="document.getElementById('folder-input').click()">Select
+                        Folder</button>
+                </div>
+                <input type="file" id="file-input" accept="application/pdf" multiple hidden>
+                <input type="file" id="folder-input" webkitdirectory hidden>
+            </div>
+
+            <div class="actions">
+                <button id="process-btn" class="btn-primary" disabled>Process PDFs</button>
+                <button id="download-btn" class="btn-success hidden">Download ZIP</button>
+            </div>
+
+            <div class="processing-panel hidden" id="processing-board">
+                <div class="progress-header">
+                    <span id="status-text">Starting process...</span>
+                    <span id="percentage-text" class="percentage">0%</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-bar"></div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-files">0</span>
+                    <span class="stat-label">Files</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-pages">0</span>
+                    <span class="stat-label">Pages</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-names">0</span>
+                    <span class="stat-label">Dealers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="stat-pdfs">0</span>
+                    <span class="stat-label">PDFs</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./libs/pdf.min.js"></script>
+    <script src="./libs/pdf-lib.min.js"></script>
+    <script src="./libs/jszip.min.js"></script>
+    <script src="./libs/FileSaver.min.js"></script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
