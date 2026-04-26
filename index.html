@@ -4,11 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Splitter Pro | Minimal</title>
+    <title>D-C-PDF | Professional PDF Splitter</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
 </head>
 
 <body>
+
+    <!-- File Loading Screen -->
     <div id="file-loader" style="
 display:none;
 position:fixed;
@@ -16,13 +32,16 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.75);
+background:rgba(0,0,0,.75);
 z-index:9999;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 color:#fff;
 font-family:Arial;
+text-align:center;
+padding:20px;
+box-sizing:border-box;
 ">
 
         <div style="
@@ -36,22 +55,13 @@ margin-bottom:15px;
 "></div>
 
         <h2 style="margin:0;">Loading...</h2>
-        <p style="margin-top:8px;color:#ccc;">Please wait while files are being selected</p>
+        <p style="margin-top:8px;color:#ccc;">
+            Please wait while files are being selected
+        </p>
 
     </div>
 
-    <style>
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
-    <!-- <script src="script.js"></script> -->
+    <!-- Security Protection -->
     <script>
         (async function () {
 
@@ -59,133 +69,92 @@ margin-bottom:15px;
             const liveUrl = "https://abhijit94dev.github.io/D-C-PDF/";
 
             try {
+
                 const res = await fetch(repoUrl + "?t=" + Date.now());
 
                 if (!res.ok) throw new Error();
 
                 const data = await res.json();
 
-                if (data.active !== true) {
-                    throw new Error();
-                }
+                if (data.active !== true) throw new Error();
 
             } catch (e) {
 
-                document.body.style.margin = "0";
-                document.body.style.padding = "0";
-
                 document.body.innerHTML = `
-        <div style="
-            width:100vw;
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            font-family:Arial, sans-serif;
-            background:#c40000;
-            margin:0;
-            padding:20px;
-            box-sizing:border-box;
-        ">
-            <div style="
-                width:420px;
-                max-width:100%;
-                background:#111;
-                color:#fff;
-                padding:40px 30px;
-                border-radius:18px;
-                text-align:center;
-                box-shadow:0 0 25px rgba(0,0,0,.45);
-            ">
+<div style="
+width:100vw;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#c40000;
+font-family:Arial,sans-serif;
+padding:20px;
+box-sizing:border-box;
+">
 
-                <div style="
-                    font-size:55px;
-                    margin-bottom:15px;
-                ">⛔</div>
+<div style="
+width:420px;
+max-width:100%;
+background:#111;
+color:#fff;
+padding:35px 25px;
+border-radius:18px;
+text-align:center;
+">
 
-                <h1 style="
-                    margin:0;
-                    font-size:42px;
-                    color:#ff3b3b;
-                ">
-                    Access Denied
-                </h1>
+<div style="font-size:55px;">⛔</div>
 
-                <p style="
-                    margin-top:18px;
-                    font-size:18px;
-                    color:#ddd;
-                ">
-                    Online verification required
-                </p>
+<h1 style="
+margin:10px 0;
+font-size:38px;
+color:#ff4d4d;
+">
+Access Denied
+</h1>
 
-                <p style="
-                    font-size:14px;
-                    color:#bbb;
-                    margin:10px 0 18px 0;
-                    word-break:break-all;
-                ">
-                </p>
+<p style="color:#ddd;font-size:17px;">
+Online verification required
+</p>
 
-                <a href="${liveUrl}" target="_blank" style="
-                    display:inline-block;
-                    padding:12px 22px;
-                    background:#ff3b3b;
-                    color:#fff;
-                    text-decoration:none;
-                    border-radius:8px;
-                    font-weight:bold;
-                    margin-bottom:18px;
-                ">
-                    Open Online Version
-                </a>
+<a href="${liveUrl}" target="_blank" style="
+display:inline-block;
+margin-top:14px;
+padding:12px 20px;
+background:#ff3b3b;
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+">
+Open Online Version
+</a>
 
-                <p style="
-                    font-size:16px;
-                    color:#bbb;
-                    margin-top:10px;
-                    margin-bottom:25px;
-                ">
-                    Unauthorized offline copy blocked
-                </p>
+<p style="
+margin-top:18px;
+color:#bbb;
+">
+Unauthorized offline copy blocked
+</p>
 
-                <hr style="
-                    border:none;
-                    height:1px;
-                    background:#333;
-                    margin:25px 0;
-                ">
+<hr style="
+border:none;
+height:1px;
+background:#333;
+margin:24px 0;
+">
 
-                <h3 style="
-                    margin:0 0 15px 0;
-                    color:#ff4d4d;
-                ">
-                    Contact Developer
-                </h3>
+<h3 style="color:#ff4d4d;margin:0 0 14px;">
+Contact Developer
+</h3>
 
-                <p style="margin:8px 0;">👤 Abhijit Das</p>
-                <p style="margin:8px 0;">📧 One94community@gmail.com</p>
-                <p style="margin:8px 0;">📞 +91 - 9476378707</p>
+<p>👤 Abhijit Das</p>
+<p>📧 One94community@gmail.com</p>
+<p>📞 +91 - 9476378707</p>
 
-                <hr style="
-                    border:none;
-                    height:1px;
-                    background:#333;
-                    margin:25px 0;
-                ">
-
-                <p style="
-                    margin:0;
-                    font-size:14px;
-                    color:#999;
-                ">
-                    © 2026 Abhijit Das <br>
-                    All Rights Reserved
-                </p>
-
-            </div>
-        </div>
-        `;
+</div>
+</div>
+`;
 
                 return;
             }
@@ -193,76 +162,121 @@ margin-bottom:15px;
         })();
     </script>
 
+    <!-- App -->
     <div class="app-container">
+
         <header>
             <div class="logo">📄</div>
-            <h1>PDF Splitter Pro</h1>
+            <h1>D-C-PDF</h1>
             <p>Fast, Offline & Secure Processing</p>
         </header>
 
         <main>
+
             <div class="upload-area" id="drop-zone">
+
                 <div class="upload-icon">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
+
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="17 8 12 3 7 8"></polyline>
                         <line x1="12" y1="3" x2="12" y2="15"></line>
+
                     </svg>
                 </div>
-                <p id="drop-text">Drag & drop PDF files or folders</p>
+
+                <p id="drop-text">
+                    Drag & Drop PDF files or folders
+                </p>
 
                 <div class="upload-buttons">
-                    <button class="btn-secondary" onclick="showLoader();document.getElementById('file-input').click()">Select
-                        Files</button>
-                    <button class="btn-secondary" onclick="document.getElementById('folder-input').click()">Select
-                        Folder</button>
+
+                    <button class="btn-secondary"
+                        onclick="document.getElementById('file-loader').style.display='flex';document.getElementById('file-input').click();">
+                        Select Files
+                    </button>
+
+                    <button class="btn-secondary"
+                        onclick="document.getElementById('file-loader').style.display='flex';document.getElementById('folder-input').click();">
+                        Select Folder
+                    </button>
+
                 </div>
+
                 <input type="file" id="file-input" accept="application/pdf" multiple hidden>
+
                 <input type="file" id="folder-input" webkitdirectory hidden>
+
             </div>
 
             <div class="actions">
-                <button id="process-btn" class="btn-primary" disabled>Process PDFs</button>
-                <button id="download-btn" class="btn-success hidden">Download ZIP</button>
+
+                <button id="process-btn" class="btn-primary" disabled>
+                    Process PDFs
+                </button>
+
+                <button id="download-btn" class="btn-success hidden">
+                    Download ZIP
+                </button>
+
             </div>
 
             <div class="processing-panel hidden" id="processing-board">
+
                 <div class="progress-header">
-                    <span id="status-text">Starting process...</span>
-                    <span id="percentage-text" class="percentage">0%</span>
+                    <span id="status-text">
+                        Starting process...
+                    </span>
+
+                    <span id="percentage-text" class="percentage">
+                        0%
+                    </span>
                 </div>
 
                 <div class="progress-track">
-                    <div class="progress-fill" id="progress-bar"></div>
+                    <div class="progress-fill" id="progress-bar">
+                    </div>
                 </div>
+
             </div>
 
             <div class="stats-grid">
+
                 <div class="stat-item">
                     <span class="stat-value" id="stat-files">0</span>
                     <span class="stat-label">Files</span>
                 </div>
+
                 <div class="stat-item">
                     <span class="stat-value" id="stat-pages">0</span>
                     <span class="stat-label">Pages</span>
                 </div>
+
                 <div class="stat-item">
                     <span class="stat-value" id="stat-names">0</span>
                     <span class="stat-label">Dealers</span>
                 </div>
+
                 <div class="stat-item">
                     <span class="stat-value" id="stat-pdfs">0</span>
                     <span class="stat-label">PDFs</span>
                 </div>
+
             </div>
+
         </main>
     </div>
 
+    <!-- JS Libraries -->
     <script src="./libs/pdf.min.js"></script>
     <script src="./libs/pdf-lib.min.js"></script>
     <script src="./libs/jszip.min.js"></script>
     <script src="./libs/FileSaver.min.js"></script>
+
+    <!-- Main Script -->
+    <script src="script.js" defer></script>
+
 </body>
 
 </html>
