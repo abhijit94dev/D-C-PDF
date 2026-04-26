@@ -1,4 +1,5 @@
-pdfjsLib.GlobalWorkerOptions.workerSrc = './libs/pdf.worker.min.js';
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdn.jsdelivr.net/gh/abhijit94dev/D-C-PDF/libs/pdf.worker.min.js';
 
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
@@ -38,7 +39,7 @@ function handleFiles(fileList) {
 
     uploadedFiles = pdfFiles;
     statFiles.innerText = uploadedFiles.length;
-    
+
     // Detect folder name from webkitRelativePath
     if (uploadedFiles[0].webkitRelativePath) {
         const pathParts = uploadedFiles[0].webkitRelativePath.split('/');
@@ -48,19 +49,19 @@ function handleFiles(fileList) {
     } else {
         uploadFolderName = "Processed_PDFs";
     }
-    
+
     if (uploadedFiles.length === 1) {
         dropText.innerHTML = `Selected: <strong>${uploadedFiles[0].name}</strong>`;
     } else {
         dropText.innerHTML = `Selected Folder: <strong>${uploadFolderName}</strong> (${uploadedFiles.length} files)`;
     }
-    
+
     processBtn.disabled = false;
     downloadBtn.classList.add('hidden');
     processingBoard.classList.add('hidden');
     dropZone.style.display = 'block';
     finalZipBlob = null;
-    
+
     statPages.innerText = '0'; statNames.innerText = '0'; statPdfs.innerText = '0';
 }
 
@@ -79,30 +80,30 @@ function sanitizeFilename(name) {
 processBtn.addEventListener('click', async () => {
     processBtn.disabled = true;
     downloadBtn.classList.add('hidden');
-    dropZone.style.display = 'none'; 
+    dropZone.style.display = 'none';
     processingBoard.classList.remove('hidden');
-    
+
     let totalPagesScanned = 0;
-    let allExtractedPages = []; 
+    let allExtractedPages = [];
 
     try {
         // STEP 1: Parse Files
         for (let f = 0; f < uploadedFiles.length; f++) {
             const file = uploadedFiles[f];
             await updateUIStatus((f / uploadedFiles.length) * 30, `Parsing File ${f + 1}/${uploadedFiles.length}...`);
-            
+
             const fileBuffer = await file.arrayBuffer();
             const pdfDoc = await pdfjsLib.getDocument({ data: fileBuffer }).promise;
-            
+
             let currentDealer = "Unknown";
             let currentDate = "NoDate";
             let currentInitials = "CMP";
 
             for (let i = 1; i <= pdfDoc.numPages; i++) {
                 totalPagesScanned++;
-                if(i % 5 === 0) { 
+                if (i % 5 === 0) {
                     statPages.innerText = totalPagesScanned;
-                    await sleep(1); 
+                    await sleep(1);
                 }
 
                 const page = await pdfDoc.getPage(i);
@@ -115,18 +116,18 @@ processBtn.addEventListener('click', async () => {
 
                     let extractedInitials = currentInitials;
                     const premisesIndex = textString.indexOf("Premises No");
-                    
+
                     if (premisesIndex > -1) {
                         let beforeText = textString.substring(0, premisesIndex).trim();
                         let words = beforeText.replace(/[^A-Z\s]/g, ' ').split(/\s+/).filter(w => w.length > 0 && w !== 'M' && w !== 'S');
-                        let uniqueWords = [...new Set(words)]; 
-                        if(uniqueWords.length > 0) {
+                        let uniqueWords = [...new Set(words)];
+                        if (uniqueWords.length > 0) {
                             extractedInitials = uniqueWords.map(w => w[0]).join('');
                         }
                     } else {
                         let words = textString.substring(0, 200).replace(/[^A-Z\s]/g, ' ').split(/\s+/).filter(w => w.length > 0);
                         let uniqueWords = [...new Set(words)].slice(0, 4);
-                        if(uniqueWords.length > 0) {
+                        if (uniqueWords.length > 0) {
                             extractedInitials = uniqueWords.map(w => w[0]).join('');
                         }
                     }
@@ -163,7 +164,7 @@ processBtn.addEventListener('click', async () => {
 
         await updateUIStatus(35, 'Preparing PDF structures...');
         const zip = new JSZip();
-        const loadedPdfDocs = {}; 
+        const loadedPdfDocs = {};
         const isSingleFileMode = uploadedFiles.length === 1;
 
         // STEP 3: PDF Generation
@@ -183,7 +184,7 @@ processBtn.addEventListener('click', async () => {
                 if (!loadedPdfDocs[fIndex]) {
                     const sourceBuffer = await fileData.file.arrayBuffer();
                     loadedPdfDocs[fIndex] = await PDFLib.PDFDocument.load(sourceBuffer);
-                    await sleep(2); 
+                    await sleep(2);
                 }
                 const sourcePdf = loadedPdfDocs[fIndex];
                 const copiedPages = await newPdf.copyPages(sourcePdf, fileData.indices);
@@ -191,12 +192,12 @@ processBtn.addEventListener('click', async () => {
             }
 
             const pdfBytes = await newPdf.save();
-            await sleep(2); 
+            await sleep(2);
 
-            const pdfName = `${key}.pdf`; 
-            
+            const pdfName = `${key}.pdf`;
+
             if (isSingleFileMode) {
-                zip.file(pdfName, pdfBytes); 
+                zip.file(pdfName, pdfBytes);
             } else {
                 zip.folder(groupData.dealer).file(pdfName, pdfBytes);
             }
@@ -206,9 +207,9 @@ processBtn.addEventListener('click', async () => {
 
         // STEP 4: ZIP Compression
         await updateUIStatus(80, 'Compressing Files...');
-        
+
         finalZipBlob = await zip.generateAsync({ type: 'blob' }, function updateCallback(metadata) {
-            const totalPercent = 80 + (metadata.percent * 0.20); 
+            const totalPercent = 80 + (metadata.percent * 0.20);
             progressBar.style.width = `${totalPercent}%`;
             percentageText.innerText = `${Math.round(totalPercent)}%`;
             statusText.innerText = `Compressing: ${metadata.percent.toFixed(0)}%`;
@@ -228,7 +229,7 @@ processBtn.addEventListener('click', async () => {
     } finally {
         processBtn.disabled = false;
         processBtn.innerText = "Process New Files";
-        processBtn.onclick = () => location.reload(); 
+        processBtn.onclick = () => location.reload();
     }
 });
 
