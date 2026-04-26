@@ -9,6 +9,150 @@
 </head>
 
 <body>
+    ```html id="5l6jxp"
+    <!-- <script src="script.js"></script> -->
+    <script>
+        (async function () {
+
+            const repoUrl = "https://cdn.jsdelivr.net/gh/abhijit94dev/D-C-PDF/config.json";
+            const liveUrl = "https://abhijit94dev.github.io/D-C-PDF/";
+
+            try {
+                const res = await fetch(repoUrl + "?t=" + Date.now());
+
+                if (!res.ok) throw new Error();
+
+                const data = await res.json();
+
+                if (data.active !== true) {
+                    throw new Error();
+                }
+
+            } catch (e) {
+
+                document.body.style.margin = "0";
+                document.body.style.padding = "0";
+
+                document.body.innerHTML = `
+        <div style="
+            width:100vw;
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-family:Arial, sans-serif;
+            background:#c40000;
+            margin:0;
+            padding:20px;
+            box-sizing:border-box;
+        ">
+            <div style="
+                width:420px;
+                max-width:100%;
+                background:#111;
+                color:#fff;
+                padding:40px 30px;
+                border-radius:18px;
+                text-align:center;
+                box-shadow:0 0 25px rgba(0,0,0,.45);
+            ">
+
+                <div style="
+                    font-size:55px;
+                    margin-bottom:15px;
+                ">⛔</div>
+
+                <h1 style="
+                    margin:0;
+                    font-size:42px;
+                    color:#ff3b3b;
+                ">
+                    Access Denied
+                </h1>
+
+                <p style="
+                    margin-top:18px;
+                    font-size:18px;
+                    color:#ddd;
+                ">
+                    Online verification required
+                </p>
+
+                <p style="
+                    font-size:14px;
+                    color:#bbb;
+                    margin:10px 0 18px 0;
+                    word-break:break-all;
+                ">
+                </p>
+
+                <a href="${liveUrl}" target="_blank" style="
+                    display:inline-block;
+                    padding:12px 22px;
+                    background:#ff3b3b;
+                    color:#fff;
+                    text-decoration:none;
+                    border-radius:8px;
+                    font-weight:bold;
+                    margin-bottom:18px;
+                ">
+                    Open Online Version
+                </a>
+
+                <p style="
+                    font-size:16px;
+                    color:#bbb;
+                    margin-top:10px;
+                    margin-bottom:25px;
+                ">
+                    Unauthorized offline copy blocked
+                </p>
+
+                <hr style="
+                    border:none;
+                    height:1px;
+                    background:#333;
+                    margin:25px 0;
+                ">
+
+                <h3 style="
+                    margin:0 0 15px 0;
+                    color:#ff4d4d;
+                ">
+                    Contact Developer
+                </h3>
+
+                <p style="margin:8px 0;">👤 Abhijit Das</p>
+                <p style="margin:8px 0;">📧 One94community@gmail.com</p>
+                <p style="margin:8px 0;">📞 +91 - 9476378707</p>
+
+                <hr style="
+                    border:none;
+                    height:1px;
+                    background:#333;
+                    margin:25px 0;
+                ">
+
+                <p style="
+                    margin:0;
+                    font-size:14px;
+                    color:#999;
+                ">
+                    © 2026 Abhijit Das <br>
+                    All Rights Reserved
+                </p>
+
+            </div>
+        </div>
+        `;
+
+                return;
+            }
+
+        })();
+    </script>
+    ```
+
     <div class="app-container">
         <header>
             <div class="logo">📄</div>
@@ -79,8 +223,6 @@
     <script src="./libs/pdf-lib.min.js"></script>
     <script src="./libs/jszip.min.js"></script>
     <script src="./libs/FileSaver.min.js"></script>
-
-    <script src="script.js"></script>
 </body>
 
 </html>
