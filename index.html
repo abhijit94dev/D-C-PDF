@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>D-C-PDF | Professional PDF Splitter</title>
 
     <link rel="stylesheet" href="style.css">
@@ -18,13 +18,52 @@
                 transform: rotate(360deg);
             }
         }
-    </style>
 
+        @keyframes pulseRed {
+            0% {
+                background: #120000;
+            }
+
+            50% {
+                background: #8b0000;
+            }
+
+            100% {
+                background: #120000;
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 0, 0, .35);
+            }
+
+            50% {
+                box-shadow: 0 0 28px rgba(255, 0, 0, .8);
+            }
+
+            100% {
+                box-shadow: 0 0 10px rgba(255, 0, 0, .35);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- File Loading Screen -->
+    <!-- Loading Overlay -->
     <div id="file-loader" style="
 display:none;
 position:fixed;
@@ -32,22 +71,22 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.75);
+background:rgba(0,0,0,.82);
 z-index:9999;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 color:#fff;
-font-family:Arial;
+font-family:Arial,sans-serif;
 text-align:center;
 padding:20px;
 box-sizing:border-box;
 ">
 
         <div style="
-width:55px;
-height:55px;
-border:5px solid #444;
+width:58px;
+height:58px;
+border:5px solid #333;
 border-top:5px solid #00ff99;
 border-radius:50%;
 animation:spin 1s linear infinite;
@@ -55,13 +94,10 @@ margin-bottom:15px;
 "></div>
 
         <h2 style="margin:0;">Loading...</h2>
-        <p style="margin-top:8px;color:#ccc;">
-            Please wait while files are being selected
-        </p>
-
+        <p style="margin-top:8px;color:#ccc;">Please wait while files are being selected</p>
     </div>
 
-    <!-- Security Protection -->
+    <!-- Security Check -->
     <script>
         (async function () {
 
@@ -69,13 +105,10 @@ margin-bottom:15px;
             const liveUrl = "https://abhijit94dev.github.io/D-C-PDF/";
 
             try {
-
                 const res = await fetch(repoUrl + "?t=" + Date.now());
-
                 if (!res.ok) throw new Error();
 
                 const data = await res.json();
-
                 if (data.active !== true) throw new Error();
 
             } catch (e) {
@@ -87,73 +120,151 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:#c40000;
+background:#120000;
+animation:pulseRed 2s infinite;
 font-family:Arial,sans-serif;
 padding:20px;
 box-sizing:border-box;
 ">
 
 <div style="
-width:420px;
+width:460px;
 max-width:100%;
-background:#111;
+background:#000;
 color:#fff;
-padding:35px 25px;
+padding:34px 24px;
 border-radius:18px;
 text-align:center;
+border:2px solid #ff1a1a;
+animation:glow 1.8s infinite;
 ">
 
-<div style="font-size:55px;">⛔</div>
+<div style="font-size:58px;margin-bottom:8px;">⚠️</div>
 
 <h1 style="
-margin:10px 0;
-font-size:38px;
-color:#ff4d4d;
+margin:8px 0;
+font-size:36px;
+color:#ff3333;
+letter-spacing:1px;
 ">
-Access Denied
+SECURITY BLOCKED
 </h1>
 
-<p style="color:#ddd;font-size:17px;">
-Online verification required
+<p style="
+font-size:18px;
+color:#fff;
+margin:12px 0 6px;
+line-height:1.5;
+">
+Unauthorized Offline Copy Detected
+</p>
+
+<p style="
+font-size:15px;
+color:#ffb3b3;
+margin:0 0 18px;
+line-height:1.6;
+">
+This local version has been disabled.<br>
+Please use the official online version.
 </p>
 
 <a href="${liveUrl}" target="_blank" style="
 display:inline-block;
-margin-top:14px;
-padding:12px 20px;
-background:#ff3b3b;
+padding:14px 24px;
+background:#ff1a1a;
 color:#fff;
 text-decoration:none;
 border-radius:8px;
 font-weight:bold;
+font-size:15px;
+box-shadow:0 0 14px rgba(255,0,0,.65);
 ">
-Open Online Version
+OPEN OFFICIAL VERSION
 </a>
-
-<p style="
-margin-top:18px;
-color:#bbb;
-">
-Unauthorized offline copy blocked
-</p>
 
 <hr style="
 border:none;
 height:1px;
-background:#333;
+background:#2b2b2b;
 margin:24px 0;
 ">
 
-<h3 style="color:#ff4d4d;margin:0 0 14px;">
-Contact Developer
+<h3 style="margin:0 0 10px;color:#ff6666;">Contact Developer</h3>
+
+<p style="margin:6px 0;">👤 Abhijit Das</p>
+<p style="margin:6px 0;">📧 One94community@gmail.com</p>
+<p style="margin:6px 0;">📞 +91 - 9476378707</p>
+
+<p style="
+margin-top:18px;
+font-size:12px;
+color:#777;
+">
+Protected by D-C-PDF Security Layer
+</p>
+
+</div>
+
+<!-- Popup -->
+<div id="sec-popup" style="
+display:none;
+position:fixed;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:92%;
+max-width:360px;
+background:#111;
+border:1px solid #ff3333;
+border-radius:14px;
+padding:22px;
+text-align:center;
+color:#fff;
+z-index:10001;
+animation:fadeIn .35s ease;
+box-shadow:0 0 30px rgba(255,0,0,.45);
+">
+
+<div style="font-size:42px;margin-bottom:8px;">🔒</div>
+
+<h3 style="margin:0 0 10px;color:#ff4d4d;">
+Security Alert
 </h3>
 
-<p>👤 Abhijit Das</p>
-<p>📧 One94community@gmail.com</p>
-<p>📞 +91 - 9476378707</p>
+<p style="
+margin:0;
+font-size:14px;
+line-height:1.6;
+color:#ddd;
+">
+Unauthorized offline version detected.<br>
+Please use the verified online version.
+</p>
+
+<button onclick="document.getElementById('sec-popup').style.display='none'"
+style="
+margin-top:18px;
+padding:10px 18px;
+border:none;
+background:#ff1a1a;
+color:#fff;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+">
+OK
+</button>
 
 </div>
+
 </div>
+
+<script>
+setTimeout(function(){
+document.getElementById('sec-popup').style.display='block';
+},3000);
+<\/script>
 `;
 
                 return;
@@ -162,7 +273,7 @@ Contact Developer
         })();
     </script>
 
-    <!-- App -->
+    <!-- Main App -->
     <div class="app-container">
 
         <header>
@@ -178,17 +289,13 @@ Contact Developer
                 <div class="upload-icon">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
-
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="17 8 12 3 7 8"></polyline>
                         <line x1="12" y1="3" x2="12" y2="15"></line>
-
                     </svg>
                 </div>
 
-                <p id="drop-text">
-                    Drag & Drop PDF files or folders
-                </p>
+                <p id="drop-text">Drag & Drop PDF files or folders</p>
 
                 <div class="upload-buttons">
 
@@ -205,38 +312,24 @@ Contact Developer
                 </div>
 
                 <input type="file" id="file-input" accept="application/pdf" multiple hidden>
-
                 <input type="file" id="folder-input" webkitdirectory hidden>
 
             </div>
 
             <div class="actions">
-
-                <button id="process-btn" class="btn-primary" disabled>
-                    Process PDFs
-                </button>
-
-                <button id="download-btn" class="btn-success hidden">
-                    Download ZIP
-                </button>
-
+                <button id="process-btn" class="btn-primary" disabled>Process PDFs</button>
+                <button id="download-btn" class="btn-success hidden">Download ZIP</button>
             </div>
 
             <div class="processing-panel hidden" id="processing-board">
 
                 <div class="progress-header">
-                    <span id="status-text">
-                        Starting process...
-                    </span>
-
-                    <span id="percentage-text" class="percentage">
-                        0%
-                    </span>
+                    <span id="status-text">Starting process...</span>
+                    <span id="percentage-text" class="percentage">0%</span>
                 </div>
 
                 <div class="progress-track">
-                    <div class="progress-fill" id="progress-bar">
-                    </div>
+                    <div class="progress-fill" id="progress-bar"></div>
                 </div>
 
             </div>
@@ -268,13 +361,10 @@ Contact Developer
         </main>
     </div>
 
-    <!-- JS Libraries -->
     <script src="./libs/pdf.min.js"></script>
     <script src="./libs/pdf-lib.min.js"></script>
     <script src="./libs/jszip.min.js"></script>
     <script src="./libs/FileSaver.min.js"></script>
-
-    <!-- Main Script -->
     <script src="script.js" defer></script>
 
 </body>
